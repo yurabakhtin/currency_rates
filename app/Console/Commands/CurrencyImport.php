@@ -8,14 +8,14 @@ use DateTime;
 use Illuminate\Console\Command;
 use SimpleXMLElement;
 
-class Import extends Command
+class CurrencyImport extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'currate:import {url}';
+    protected $signature = 'currency:import {xml_file : URL or path to XML file}';
 
     /**
      * The console command description.
@@ -29,9 +29,9 @@ class Import extends Command
      */
     public function handle()
     {
-        $this->info('Importing currency rates from: ' . $this->argument('url') . '...');
+        $this->info('Importing currency rates from: ' . $this->argument('xml_file') . '...');
 
-        $importResult = $this->importCurrencies($this->argument('url'));
+        $importResult = $this->importCurrencies($this->argument('xml_file'));
 
         if (is_array($importResult)) {
             foreach ($importResult as $resultType => $resultNumber) {
