@@ -1,0 +1,403 @@
+{
+	"info": {
+		"_postman_id": "019c6a9e-6189-4372-a885-9afd88bc5238",
+		"name": "Currency-Rates",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Token",
+			"item": [
+				{
+					"name": "Token: Update / Log in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "yura@fake.email",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "qwerty",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "123@asqwed.asd",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{API_URL}}/token",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Token: Delete / Log out",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "exC1cUSaL2Ml87QN867BhJlxteMV7FljEckdAiBU1N7VhrR0dxZG0DL6Q1Xf",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "123@asqwed.asd",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{API_URL}}/token",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Currency",
+			"item": [
+				{
+					"name": "Currency: List all with pagination",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "GTXWqxxr2QFm8IbtnMjHSOf2EuNrzg15VF4lbOTKvDK4yFPy56om3f9qXeaz",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/currency",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"currency"
+							],
+							"query": [
+								{
+									"key": "page_size",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "date_from",
+									"value": "2020-11-25",
+									"disabled": true
+								},
+								{
+									"key": "date_to",
+									"value": "2020-11-26",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Currency: Show by id",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "GTXWqxxr2QFm8IbtnMjHSOf2EuNrzg15VF4lbOTKvDK4yFPy56om3f9qXeaz",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/currency/1111",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"currency",
+								"1111"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Currency: Delete by id",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "GTXWqxxr2QFm8IbtnMjHSOf2EuNrzg15VF4lbOTKvDK4yFPy56om3f9qXeaz",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/currency/3",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"currency",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Currency Rate",
+			"item": [
+				{
+					"name": "Currency Rate: List with pagination",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "GTXWqxxr2QFm8IbtnMjHSOf2EuNrzg15VF4lbOTKvDK4yFPy56om3f9qXeaz",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/currency/6/rate?date_to=2020-11-25",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"currency",
+								"6",
+								"rate"
+							],
+							"query": [
+								{
+									"key": "page_size",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "date_from",
+									"value": "2020-11-21",
+									"disabled": true
+								},
+								{
+									"key": "date_to",
+									"value": "2020-11-25"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Currency Rate: Show by id",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "GTXWqxxr2QFm8IbtnMjHSOf2EuNrzg15VF4lbOTKvDK4yFPy56om3f9qXeaz",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/currency/8/rate/8",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"currency",
+								"8",
+								"rate",
+								"8"
+							],
+							"query": [
+								{
+									"key": "page_size",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "3",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Currency Rate: Delete by id",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "GTXWqxxr2QFm8IbtnMjHSOf2EuNrzg15VF4lbOTKvDK4yFPy56om3f9qXeaz",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/currency/7/rate/7",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"currency",
+								"7",
+								"rate",
+								"7"
+							],
+							"query": [
+								{
+									"key": "page_size",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "3",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

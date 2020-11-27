@@ -21,7 +21,10 @@ class CreateCurrenciesRatesTable extends Migration
             $table->unsignedFloat('value', 8, 4);
             $table->timestamps();
             $table->unique(['currency_id', 'date']);
-            $table->foreign('currency_id')->references('id')->on('currencies');
+            $table->foreign('currency_id')
+                ->references('id')
+                ->on('currencies')
+                ->onDelete('cascade');
         });
     }
 

@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +12,15 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::middleware('accept.json')->group(function () {
+    Route::post('token', 'Api\TokenController@update');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::middleware('auth:api')->group(function () {
+        Route::delete('token', 'Api\TokenController@delete');
+
+        Route::apiResource('currency', 'Api\CurrencyController')
+            ->only(['index', 'show', 'destroy']);
+        Route::apiResource('currency.rate', 'Api\CurrencyRateController')
+            ->only(['index', 'show', 'destroy']);
+    });
 });
