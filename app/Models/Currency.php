@@ -18,4 +18,23 @@ class Currency extends Model
     {
         return $this->hasMany('App\Models\CurrencyRate');
     }
+
+    /**
+     * Filter query by search keyword
+     *
+     * @param object $query
+     * @param string $keyword search keyword
+     * @param array $columns The filtered columns
+     * @return $query
+     */
+    public function scopeSearch($query, $keyword, $columns = ['internal_id', 'number', 'code', 'name'])
+    {
+        if ($keyword !== '' && !empty($columns)) {
+            foreach ($columns as $column) {
+                $query->orWhere($column, 'like', '%' . $keyword . '%');
+            }
+        }
+
+        return $query;
+    }
 }

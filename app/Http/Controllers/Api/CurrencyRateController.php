@@ -21,8 +21,8 @@ class CurrencyRateController extends Controller
     public function index(int $id, Request $request)
     {
         $validator = Validator::make($request->only(...array_keys($date_rules = [
-            'date_from' => 'date',
-            'date_to' => 'date|after:date_from',
+            'date_from' => 'date|nullable',
+            'date_to' => 'date|nullable|after_or_equal:date_from',
         ])), $date_rules);
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()->all()], 403);

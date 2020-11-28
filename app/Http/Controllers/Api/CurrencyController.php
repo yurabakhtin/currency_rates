@@ -41,6 +41,7 @@ class CurrencyController extends Controller
                     ->where('date', '<=', $date_to)
                     ->orderBy('date', 'desc');
             }])
+            ->search($request->input('search'))
             ->paginate($page_size);
     }
 
