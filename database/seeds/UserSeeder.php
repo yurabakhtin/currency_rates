@@ -1,8 +1,11 @@
 <?php
 
+namespace Database\Seeders;
+
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class CurrencyRateSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +14,8 @@ class CurrencyRateSeeder extends Seeder
      */
     public function run()
     {
-        //
+        User::factory()
+            ->times(10)
+            ->create();
     }
 }

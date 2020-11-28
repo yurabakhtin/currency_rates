@@ -1,5 +1,9 @@
 <?php
 
+namespace Database\Seeders;
+
+use App\Models\Currency;
+use App\Models\CurrencyRate;
 use Illuminate\Database\Seeder;
 
 class CurrencySeeder extends Seeder
@@ -11,6 +15,9 @@ class CurrencySeeder extends Seeder
      */
     public function run()
     {
-        //
+        Currency::factory()
+            ->times(50)
+            ->hasRates(100)
+            ->create();
     }
 }
