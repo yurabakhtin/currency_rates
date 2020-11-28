@@ -28,6 +28,7 @@ export default {
                         resolve(response)
                     })
                     .catch(error => {
+                        commit('setToken', '')
                         reject(error)
                     })
             })
