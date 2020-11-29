@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Facades\Token;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class TokenController extends Controller
 {
@@ -35,12 +34,8 @@ class TokenController extends Controller
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
 
-        $token = Str::random(60);
-
-        /** @var User $user */
-        $user = Auth::user();
-        $user->api_token = hash('sha256', $token);
-        $user->save();
+        $token = Token::user(Auth::user())
+            ->getNew(100);
 
         return response()->json(['token' => $token]);
     }
@@ -53,10 +48,8 @@ class TokenController extends Controller
      */
     public function delete(Request $request)
     {
-        /** @var User $user */
-        $user = Auth::guard('api')->user();
-        $user->api_token = null;
-        $user->save();
+        Token::user(Auth::guard('api')->user())
+            ->delete();
 
         return response()->json(['message' => 'Token has been cleaned']);
     }

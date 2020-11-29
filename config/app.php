@@ -175,6 +175,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /**
+         * Custom Service Providers...
+         */
+        App\Providers\TokenServiceProvider::class,
+        App\Providers\ImportCurrencyServiceProvider::class,
     ],
 
     /*
@@ -226,7 +231,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        // Custom Facades:
+        'Token' => App\Facades\Token::class,
+        'ImportCurrency' => App\Facades\ImportCurrency::class,
     ],
 
 ];

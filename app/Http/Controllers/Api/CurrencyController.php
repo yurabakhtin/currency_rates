@@ -66,8 +66,7 @@ class CurrencyController extends Controller
      */
     public function destroy(int $id)
     {
-        $currency = Currency::with('rates')
-            ->findOrFail($id);
+        $currency = Currency::findOrFail($id);
 
         if (!$currency->delete()) {
             return response()->json(['error' => 'Currency cannot be deleted'], 400);
