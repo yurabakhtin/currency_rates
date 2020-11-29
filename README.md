@@ -27,6 +27,9 @@ This app is based on PHP framework "Laravel" version 8.x with using JS framework
 
 ### Usage
 
+Please create a user by console command in order to log in to front-office part:
+![Currency Rates Front-Office](resources/img/login.png)
+
 #### Sample Data
 
 You can clear and fill your data base with sample data by run a console command `php artisan migrate:fresh --seed` from your project root.
@@ -46,5 +49,7 @@ You can clear and fill your data base with sample data by run a console command 
 
 Before run tests please create new from `.env.testing` from `.env.sample` and use separately created database in order to set it in the config `DB_DATABASE` there.
 Run command `php artisan test`.
+
+![Currency Rates Front-Office](resources/img/rates.png)
 
 Author: **Yuriy Bakhtin**

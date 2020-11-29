@@ -11,6 +11,7 @@
         align="left"
     ></b-pagination>
     <b-select
+        v-if="getTotalCount"
         :value="getPerPage"
         :options="pageSizes"
         @change="setPerPage"

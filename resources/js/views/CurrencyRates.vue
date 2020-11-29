@@ -7,13 +7,17 @@
     <div v-if="isLoading" class="text-center">
         <b-spinner variant="primary" class="m-5"/>
     </div>
-    <strong v-else-if="!getCurrencyData('id')">No rates found.</strong>
+    <strong v-else-if="!getTotalCount">No rates found.</strong>
     <b-table v-else small striped hover bordered head-variant="dark"
              :items="getRecords"
              :fields="fields"
     ></b-table>
     <Pagination module="rates"/>
     <b-button variant="primary" @click="goBack"><b-icon icon="arrow-left-circle-fill"></b-icon> Back</b-button>
+
+    <div class="line-chart" v-if="getTotalCount">
+        <line-chart :chart-data="getChartData" :height="400" />
+    </div>
 </div>
 </template>
 
@@ -22,6 +26,7 @@ import Pagination from '../components/parts/Pagination'
 import FilterRates from '../components/parts/FilterRates'
 import router from '../router'
 import {mapActions, mapGetters} from 'vuex'
+import LineChart from '../components/parts/LineChart.js'
 
 export default {
     data() {
@@ -44,7 +49,7 @@ export default {
         }
     },
     components: {
-        Pagination, FilterRates
+        Pagination, FilterRates, LineChart
     },
     methods: {
         ...mapActions('main', ['changePageTitle']),
@@ -52,11 +57,11 @@ export default {
         goBack() {
             router.push({ name: 'home' })
             this.changePageTitle(this.$store.getters['search/getKeyword'] ? 'search' : 'home')
-        }
+        },
     },
     computed: {
         ...mapGetters('currencies', ['getCurrencyData', 'getError']),
-        ...mapGetters('rates', ['getRecords', 'isLoading']),
+        ...mapGetters('rates', ['getRecords', 'isLoading', 'getTotalCount', 'getChartData']),
         ...mapGetters('rates', {getRatesError: 'getError'}),
         ...mapGetters('search', ['getKeyword'])
     },
@@ -66,3 +71,9 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+.line-chart {
+    margin-top: 1rem;
+}
+</style>

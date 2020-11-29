@@ -24,7 +24,7 @@ export default {
                 },
                 {
                     key: 'number',
-                    sortable: false
+                    sortable: true,
                 },
                 {
                     key: 'code',

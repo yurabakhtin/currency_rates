@@ -17,6 +17,7 @@ export default {
                 .then(({data}) => {
                     commit('changeLoadingStatus', false)
                     commit('refreshRecords', data)
+                    commit('setChartData', {...data, label: rootState.currencies.currentCurrency.code})
                 })
                 .catch((error) => {
                     commit('changeLoadingStatus', false)
@@ -25,7 +26,27 @@ export default {
         },
         ...PaginationInit.actions
     },
-    mutations: PaginationInit.mutations,
-    state: PaginationInit.state,
-    getters: PaginationInit.getters,
+    mutations: {
+        setChartData(state, {data, label}) {
+            state.chartData = {
+                labels: data.map(rate => rate.date).reverse(),
+                datasets: [{
+                    label,
+                    backgroundColor: '#38c172',
+                    data: data.map(rate => rate.value).reverse(),
+                }]
+            }
+        },
+        ...PaginationInit.mutations
+    },
+    state: {
+        chartData: {},
+        ...PaginationInit.state,
+    },
+    getters: {
+        getChartData(state) {
+            return state.chartData
+        },
+        ...PaginationInit.getters,
+    },
 }

@@ -7,7 +7,7 @@
                 Currency Rates
             </b-navbar-brand>
 
-            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+            <b-navbar-toggle v-if="isAuthenticated" target="nav-collapse"></b-navbar-toggle>
 
             <b-collapse v-if="isAuthenticated" id="nav-collapse" is-nav>
                 <b-navbar-nav class="mr-auto">
